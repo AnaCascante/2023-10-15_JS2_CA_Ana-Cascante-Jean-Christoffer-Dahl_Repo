@@ -14,7 +14,10 @@ const selectors =
     "#headerImg",
     "#profileImg",
     "#likeCount",
-    "#yourPosts"
+    "#yourPosts",
+    "#headerImageError",
+    "#profileImageError",
+    "#messageForUser"
 ]
 const selected = selectors.map(value => document.querySelector(value))
 
@@ -28,7 +31,10 @@ const [
     headerImg,
     profileImg,
     likeCount,
-    yourPosts
+    yourPosts,
+    headerImageError,
+    profileImageError,
+    messageForUser
 
 ] = selected
 
@@ -45,12 +51,13 @@ const options = {
       Authorization: `Bearer ${token}`,
     },
   }
-
+//checks if link and if image
 updateMediaForm.addEventListener("submit",async(e) =>{
     e.preventDefault()
     const  headerImageValue =  headerImage.value
     const  profileImageValue = profileImage.value
-  
+
+
     const updateOptions = {
         method:"PUT",
         headers: {
@@ -63,8 +70,24 @@ updateMediaForm.addEventListener("submit",async(e) =>{
             "avatar": profileImageValue
           })
     }
-    
-   await updateMedia(baseURL,userName,updateOptions)
+    const urlPattern = /^(http|https):\/\/[^ "]+$/;
+    if (!urlPattern.test(headerImageValue)) {
+      headerImageError.textContent ="URL is not valid"
+    }
+    if (!urlPattern.test(profileImageValue)) {
+      profileImageError.textContent = "URL is not valid"
+  }
+
+  if(urlPattern.test(headerImageValue) && urlPattern.test(profileImageValue)){
+    await updateMedia(baseURL,userName,updateOptions)
+
+    messageForUser.textContent = "Images changed successfully! you can now close the window"
+    messageForUser.className ="text-success text-center  display-6 p-2"
+
+  }
+
+
+   
 
 
 } )
