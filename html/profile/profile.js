@@ -64,7 +64,7 @@ updateMediaForm.addEventListener("submit",async(e) =>{
           })
     }
     
-   await updateMedia(baseURL,updateOptions)
+   await updateMedia(baseURL,userName,updateOptions)
 
 
 } )

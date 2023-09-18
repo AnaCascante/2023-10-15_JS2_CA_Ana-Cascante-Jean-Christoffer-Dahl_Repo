@@ -1,7 +1,7 @@
-async function updateMedia(){
+async function updateMedia(url,userName,values){
 
     try{
-    const response = await fetch(`${baseURL}/social/profiles/${userName}/media`,values)
+    const response = await fetch(`${url}/social/profiles/${userName}/media`,values)
     const responseData = await response.json()
 
     return responseData;
