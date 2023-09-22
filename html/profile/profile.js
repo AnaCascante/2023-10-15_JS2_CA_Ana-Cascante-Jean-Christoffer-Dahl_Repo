@@ -8,6 +8,8 @@ import reactToPosts from "../utils/helpers/reactToPosts.js";
 import deletePost from "../utils/helpers/deletePost.js";
 import editPost from "../utils/helpers/editPost.js";
 // file is getting really big, lots of functions :P will do a propper cleanup later, but it works :P
+
+//stores html id's in a array to escape document.queryselector hell in vanilla js
 const selectors =
  [
     "#username",
@@ -26,8 +28,9 @@ const selectors =
     "#followerPosts",
     "#confirmEdit"
 ]
+//i map through the selector array and for each element i document.querySelector it
 const selected = selectors.map(value => document.querySelector(value))
-
+// stores the css selectors in a array, which i then deconstruct from the selected array, saves alot of document.queryselector.
 const [
     profileName,
     followingCount,
@@ -47,8 +50,9 @@ const [
 
 ] = selected
 
-
+//token from localStorage, this is key
 let token
+//stores the name from the person who logged in to localstorage, need this to match post with author of posts etc, might be a better way but i have no idea
 let userName
 token =  localStorage.getItem('bearerToken', token);
 
@@ -61,6 +65,8 @@ const options = {
       Authorization: `Bearer ${token}`,
     },
   }
+
+
 //checks if link and if image
 updateMediaForm.addEventListener("submit",async(e) =>{
     e.preventDefault()
@@ -101,7 +107,7 @@ updateMediaForm.addEventListener("submit",async(e) =>{
 
 
 } )
-
+//generates html trying to the best of my ability to stick to functional programming method. 
 async function generateHTML(){
     const data = await getProfile(baseURL,userName, options)
     //your posts
@@ -140,7 +146,7 @@ async function generateHTML(){
 
 
 }
-
+// edit function for editing post, uses data-attributes to get the post id from your posts
 
 confirmEditBtn.addEventListener('click', async function(event) {
 
@@ -170,15 +176,14 @@ confirmEditBtn.addEventListener('click', async function(event) {
 
 generateHTML()
 
-//edit Post func
+
 
 
 
 // function from hell
 function generateProfileCards(data, container, userProfile) {
-//the longest createElement ever created :P 
-// working with frameworks will make this easier and not so tedious so dont get scared when reviewing this :P
 
+// this is a big drawback for using vanilla js to create medium-large webapps, it will be much easier working with html and js when you start with frameworks so dont get scared by this horrible long document.create
   data.forEach(element => {
  
     const card = document.createElement('div');
@@ -267,6 +272,8 @@ function generateProfileCards(data, container, userProfile) {
     }
     cardBody.append(p);
 
+
+    //more buttons
     const btnGroup = document.createElement('div');
     btnGroup.className = 'd-flex';
 
