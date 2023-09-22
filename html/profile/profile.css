@@ -95,3 +95,9 @@ h6 {
 .custom-btn{
     border: none;
 }
+.delete-post-btn:hover i {
+    color: red;
+}
+.delete-comment-btn:hover i{
+    color: red;
+}

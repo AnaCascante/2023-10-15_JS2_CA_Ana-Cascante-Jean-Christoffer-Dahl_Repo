@@ -4,7 +4,7 @@ async function getAllProfiles(url,options){
     const response = await fetch(`${url}/social/profiles?_following=true&_followers=true&_posts=true`,options)
     const responseData = await response.json()
     const profileNames = responseData.filter(p => p._count.posts > 0)
-    console.log(profileNames)
+
     return profileNames
     }catch(err){
         console.log(err)

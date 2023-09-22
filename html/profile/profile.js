@@ -5,6 +5,8 @@ import getPostByProfile from "../utils/helpers/getPostsByProfile.js";
 import timeStamp from "../utils/helpers/timeStamp.js";
 import getPostsByProfile from "../utils/helpers/getPostsByProfile.js";
 import reactToPosts from "../utils/helpers/reactToPosts.js";
+import deletePost from "../utils/helpers/deletePost.js";
+import editPost from "../utils/helpers/editPost.js";
 // file is getting really big, lots of functions :P will do a propper cleanup later, but it works :P
 const selectors =
  [
@@ -21,7 +23,8 @@ const selectors =
     "#headerImageError",
     "#profileImageError",
     "#messageForUser",
-    "#followerPosts"
+    "#followerPosts",
+    "#confirmEdit"
 ]
 const selected = selectors.map(value => document.querySelector(value))
 
@@ -39,7 +42,8 @@ const [
     headerImageError,
     profileImageError,
     messageForUser,
-    followerPostsContainer
+    followerPostsContainer,
+    confirmEditBtn
 
 ] = selected
 
@@ -136,7 +140,38 @@ async function generateHTML(){
 
 
 }
+
+
+confirmEditBtn.addEventListener('click', async function(event) {
+
+  const postId = event.currentTarget.getAttribute('data-post-id');
+  let modal = bootstrap.Modal.getInstance(document.querySelector('#editPostModal'));
+  let updatedTitle = document.querySelector('#editTitle').value;
+  let updatedBody = document.querySelector('#editBody').value;
+
+  const response = await editPost(baseURL,postId,updatedTitle,updatedBody, token);
+  console.log(response)
+  if(response.updated > response.created) {
+
+    const postCard = document.getElementById(postId);
+    const titleElement = postCard.querySelector('span');
+    const bodyElement = postCard.querySelector('.card-text');
+
+    titleElement.textContent = updatedTitle;
+    bodyElement.textContent = updatedBody;
+    updatedTitle = "";
+    updatedBody = "";
+    modal.hide(); 
+  }
+
+  
+
+});
+
 generateHTML()
+
+//edit Post func
+
 
 
 // function from hell
@@ -145,7 +180,7 @@ function generateProfileCards(data, container, userProfile) {
 // working with frameworks will make this easier and not so tedious so dont get scared when reviewing this :P
 
   data.forEach(element => {
-
+ 
     const card = document.createElement('div');
     card.className = 'card mb-3 w-100 p-2';
     card.id = element.id;
@@ -168,19 +203,43 @@ function generateProfileCards(data, container, userProfile) {
 
     // Username and Timestamp
     const usernameAndTimeDiv = document.createElement('div');
-    usernameAndTimeDiv.className = 'd-flex justify-content-between align-items-center mb-2';
+    usernameAndTimeDiv.className =  'd-flex justify-content-start align-items-center mb-2';
 
     const usernameSpan = document.createElement('h6');
     usernameSpan.textContent = userProfile.name.charAt(0).toUpperCase() + userProfile.name.slice(1)
     usernameSpan.className = 'font-weight-bold mr-2';
-
+    usernameSpan.style.marginRight = "auto";
     const smallTime = document.createElement('small');
     smallTime.className = 'text-muted';
     smallTime.textContent = timeStamp(element.created);
-
+    smallTime.style.marginRight = "10px"
     usernameAndTimeDiv.appendChild(usernameSpan);
     usernameAndTimeDiv.appendChild(smallTime);
+
+
+    //deleteButtonPost
+
+    if (userName === userProfile.name) {
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'btn btn-link btn-sm text-muted ml-auto delete-post-btn';
+      const iTrash = document.createElement('i');
+      iTrash.className = 'fas fa-trash';
+      deleteBtn.appendChild(iTrash);
+      usernameAndTimeDiv.appendChild(deleteBtn);
+  
+      // Optionally, you can add an event listener to the delete button to perform an action.
+      deleteBtn.addEventListener('click', async function() {
+        const response = await deletePost(baseURL,element.id,token);
+        if(response && response.ok) {
+   
+            card.remove();
+        }
+      });
+  }
+
     cardBody.appendChild(usernameAndTimeDiv);
+
+
 
     // Post Title
     const pTitle = document.createElement('p');
@@ -232,6 +291,32 @@ function generateProfileCards(data, container, userProfile) {
     spanLike.textContent = element._count.reactions;
     btnLike.appendChild(spanLike);
 
+    //edit btn
+    if(userName === element.author.name){
+        const btnEdit = document.createElement('button');
+        btnEdit.className = 'btn btn-link btn-sm text-muted';
+        const iEdit = document.createElement('i');
+        iEdit.className = 'fas fa-edit';  // Font Awesome icon for edit
+        btnEdit.appendChild(iEdit);
+        const spanEdit = document.createElement('span');
+        spanEdit.textContent = " Edit";
+        btnEdit.setAttribute('data-post-id', element.id);
+        confirmEditBtn.setAttribute('data-post-id', element.id);
+          btnEdit.appendChild(spanEdit);
+      
+        // Add an event listener to handle post editing
+        btnEdit.addEventListener('click', function() {
+
+
+            document.getElementById('editTitle').value = element.title;
+            document.getElementById('editBody').value = element.body;
+            
+            var modal = new bootstrap.Modal(document.getElementById('editPostModal'));
+          modal.show();
+
+    });
+    btnGroup.appendChild(btnEdit);  
+}
 
     //likeButton eventListener
     btnLike.addEventListener("click",(e)=>{
@@ -241,6 +326,7 @@ function generateProfileCards(data, container, userProfile) {
     
     btnGroup.appendChild(btnComment);
     btnGroup.appendChild(btnLike);
+ 
     cardBody.appendChild(btnGroup);
 
     colContent.appendChild(cardBody);
@@ -305,21 +391,39 @@ function generateProfileCards(data, container, userProfile) {
     commentsPanel.className = 'comments-panel border-top mt-2';
     commentsPanel.style.display = 'none'; // Initially hide the panel
 
-    element.comments.forEach(comment => {  // Assuming element.comments is your array of comments
-        const commentDiv = document.createElement('div');
-        commentDiv.className = 'comment py-2';
-
-        const commentUser = document.createElement('strong');  // Display user's name
-        commentUser.textContent = comment.author.name + ": ";
-        commentDiv.appendChild(commentUser);
-
-        const commentText = document.createElement('span');  // Display comment's text
-        commentText.textContent = comment.body;
-        commentDiv.appendChild(commentText);
-
-        commentsPanel.appendChild(commentDiv);
-    });
-
+    element.comments.forEach(comment => { 
+      const commentDiv = document.createElement('div');
+      commentDiv.className = 'comment py-2 d-flex justify-content-between align-items-center';  // Make it a flex container
+  
+      const commentUser = document.createElement('strong');  
+      commentUser.textContent = comment.author.name + ": ";
+      commentDiv.appendChild(commentUser);
+  
+      const commentText = document.createElement('span');  
+      commentText.textContent = comment.body;
+      commentDiv.appendChild(commentText);
+  
+      // Check if the comment author's name matches the logged-in user's name
+      if (comment.author.name === userName) {
+          const deleteCommentBtn = document.createElement('button');
+          deleteCommentBtn.className = 'btn btn-link btn-sm text-muted ml-2 delete-comment-btn';
+          const iTrashComment = document.createElement('i');
+          iTrashComment.className = 'fas fa-trash';
+          deleteCommentBtn.appendChild(iTrashComment);
+  
+          // Add an event listener to handle comment deletion
+          deleteCommentBtn.addEventListener('click', function() {
+              // Call your deleteComment function here
+              // Example: deleteComment(comment.id);
+              // If successful, remove the comment div:
+              commentDiv.remove();
+          });
+  
+          commentDiv.appendChild(deleteCommentBtn);  // Append it to the main commentDiv
+      }
+  
+      commentsPanel.appendChild(commentDiv);
+  });
     cardBody.appendChild(commentsPanel);
 
     btnComment.addEventListener('click', function() {

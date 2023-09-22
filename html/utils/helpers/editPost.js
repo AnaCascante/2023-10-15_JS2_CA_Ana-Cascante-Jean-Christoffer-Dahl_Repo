@@ -1,26 +1,27 @@
-async function postComment(url,id,comment,token,commentCount,orgData){
+async function editPost(url,id,newInfo,titleInfo,token){
     try{
-        const response = await fetch(`${url}/social/posts/${id}/comment`,
+        const response = await fetch(`${url}/social/posts/${id}`,
         {
-          method:"POST",
+          method:"PUT",
           headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json'
             },
         
             body:JSON.stringify({
-              "body": comment,
+                "title":titleInfo,
+              "body": newInfo
              
             })
         
         });
         if (response.ok) {
        
-   
-            commentCount.textContent ++
+            const data = await response.json()
+            return data
 
         } else {
-            console.error('Failed to update the like count on the server.');
+            console.error("asd");
         }
         
 
@@ -29,4 +30,4 @@ async function postComment(url,id,comment,token,commentCount,orgData){
         console.log(err);
       }
 }
-export default postComment
+export default editPost

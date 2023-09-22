@@ -4,7 +4,7 @@ async function getAllPosts(url,options){
     const response = await fetch(`${url}/social/posts?_author=true&_comments=true&_reactions=true`,options)
     const responseData = await response.json()
    
-    console.log(responseData)
+
     return responseData
     }catch(err){
         console.log(err)
