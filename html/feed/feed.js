@@ -1,4 +1,4 @@
-import { apiUrl, authToken } from './loginFunc.js';
+import logIn  from "./utils/helpers/loginFunc.js";
 
 
 async function fetchPosts (){
@@ -14,10 +14,10 @@ async function fetchPosts (){
     };
   
 const response = await fetch (apiUrl,getData); 
-console.log (response); ¨
+console.log (response); 
 const json= await response.json();
 console.log (json); 
-    } catch (eror){
+    } catch (error){
         console.log (error);
     }
 }
