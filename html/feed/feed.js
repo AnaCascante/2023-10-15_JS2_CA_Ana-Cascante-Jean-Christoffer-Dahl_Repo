@@ -131,7 +131,7 @@ generatePage()
     
         //deleteButtonPost
     
-        if (userName === userProfile.name) {
+        if (userName ===  element.author?.name) {
           const deleteBtn = document.createElement('button');
           deleteBtn.className = 'btn btn-link btn-sm text-muted ml-auto delete-post-btn';
           const iTrash = document.createElement('i');
