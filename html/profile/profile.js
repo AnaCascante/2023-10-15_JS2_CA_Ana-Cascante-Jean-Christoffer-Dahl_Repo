@@ -109,6 +109,7 @@ updateMediaForm.addEventListener("submit",async(e) =>{
 } )
 //generates html trying to the best of my ability to stick to functional programming method. 
 async function generateHTML(){
+  //your profile
     const data = await getProfile(baseURL,userName, options)
     //your posts
     const getUserPosts = await getPostByProfile(baseURL,userName,options)
@@ -121,7 +122,7 @@ async function generateHTML(){
     });
   
     const resultsUserPosts = await Promise.all(userPostsFollow);
-    console.log(resultsUserPosts)
+
 
         //get userBio by followed users
         const userBio = data.following.map(async (n) => {
@@ -306,7 +307,8 @@ function generateProfileCards(data, container, userProfile) {
 
     const spanLike = document.createElement('span');
     spanLike.id = `likeCount${element.id}`;
-    spanLike.textContent = element._count.reactions;
+    spanLike.textContent = element.reactions[0].count;
+    console.log(element)
     btnLike.appendChild(spanLike);
 
     //edit btn
