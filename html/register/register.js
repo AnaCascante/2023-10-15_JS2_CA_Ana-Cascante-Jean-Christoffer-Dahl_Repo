@@ -23,13 +23,11 @@ const [
     emailError
 ] = selected;
 
-console.log(emailError)
-
 registerForm.addEventListener("submit", async(e) => {
     e.preventDefault();
     const emailValue = email.value.trim().toLowerCase();
     const passwordValue = password.value
-    const nameValue = userName.value
+    const nameValue = userName.value.trim().replace(" ", "")
     
   
     let isFormValid = true;
@@ -55,7 +53,9 @@ registerForm.addEventListener("submit", async(e) => {
 
     if(isFormValid){
         try{
-            await createUser(`${baseURL}`,{"email":`${emailValue}`,"password":`${passwordValue}`,"name":`${nameValue}`})
+     
+             createUser(`${baseURL}`,
+            {"name":`${nameValue}`,"email":`${emailValue}`,"password":`${passwordValue}`,"avatar:":"","banner":""})
             showSnackbar("User created successfully! you can now log in");
 
         }catch(err){
@@ -65,6 +65,7 @@ registerForm.addEventListener("submit", async(e) => {
   
     }
 })
+
 
 //createUser
 async function createUser(url ="", data={}){
@@ -76,8 +77,14 @@ async function createUser(url ="", data={}){
                 "Content-Type":"application/json"
             },
             body:JSON.stringify(data)
+          
     })
-    return response.json();
+    if(!response.ok){
+        console.log(response)
+    }
+    const userData = await response.json()
+
+    return userData
     }catch(err){
         console.log(err)
     }
