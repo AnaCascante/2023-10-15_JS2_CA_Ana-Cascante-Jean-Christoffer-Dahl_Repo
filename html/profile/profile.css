@@ -18,7 +18,7 @@
     left: 20px;
     border: 3px solid #212529;
     z-index: 10;
-    border-radius: 999px;
+    border-radius: 50%;
   }
   
 @media(max-width:768px){
