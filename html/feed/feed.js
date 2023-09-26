@@ -43,7 +43,7 @@ getPosts(options);
 /*---- structure from html for th card  --- transform this into js*/
 
 
-async function createCards (){
+async function createCards (post){
         const posts = await getPosts()
 
       posts.forEach (post => {
@@ -59,6 +59,7 @@ async function createCards (){
         Imgsrc= element.media; 
 
         const cardTitle = document.createElement ('h2'); 
+        cardTitle.textContent = post.title; 
       
         const cardBodyText = document.createElement ("p"); 
         cardText.textContent = card.Text;
@@ -67,9 +68,9 @@ async function createCards (){
 
 
 
-console.log (createCards);
+console.log (post);
         
-return createCards ();
+ createCards ();
 
          })
 
