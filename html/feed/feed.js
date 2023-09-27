@@ -1,9 +1,69 @@
+@import timeStamp from "../utils/helpers/timeStamp.js";
+@import postComment from "../utils/helpers/postComment.js";
+@import reactToPosts from "../utils/helpers/reactToPosts.js";
+@import deletePost from "../utils/helpers/deletePost.js"; 
+@import editPost from "../utils/helpers/editPost.js"; 
 
+const feedContainer =document.querySelector ("#feed-container")
+const confirmEditBtn = document.querySelector ("#confirmEdit")
 
+let token 
 const baseUrl = "https://api.noroff.dev/api/v1";
 
+let userName 
+token = localStorage.getItem ('bearerToken',token); 
+userName = localStorage.getItem ('name',userName); 
 
-/*userName =  localStorage.getItem('name', userName); */
+const options = {
+  method: "GET", 
+  credentials: "same-origin", 
+  headers: {
+    "Content-Type": "application/json", 
+    Authorization: `Bearer ${token}`
+  }
+}
+
+
+
+async function getPosts (headerOptions){
+  try {
+      const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
+      const posts= await response.json();
+      console.log (posts); 
+      return posts;
+  } catch (error){
+      console.log (error);
+  }
+}
+
+
+async function generatePage (){
+  const data = await getPosts (options)
+  if (data){
+    generateProfileCards (data, feedContainer, userName)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*userName =  localStorage.getItem('name', userName); 
 const cardContainer = document.getElementById ('cardContainer'); 
 
 const cardTitle = document.getElementById ('cardTitle'); 
@@ -23,18 +83,7 @@ const options ={
 }
 }
 
-async function getPosts (headerOptions){
-    try {
-        const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
-        const posts= await response.json();
-        console.log (posts); 
-        return posts;
-    } catch (error){
-        console.log (error);
-    }
-}
 
-getPosts(options);
 
 
 
@@ -48,34 +97,10 @@ async function createCards (post){
 
       posts.forEach (post => {
 
-        /* this is just the "body of the card"*/
-  
-
-        const cardContainer = document.createElement ('div')
-        cardContainer.id = element.id; 
-
-        const cardImg = document.createElement ('div'); 
-        const Img = document.createElement ('img'); 
-        Imgsrc= element.media; 
-
-        const cardTitle = document.createElement ('h2'); 
-        cardTitle.textContent = post.title; 
-      
-        const cardBodyText = document.createElement ("p"); 
-        cardText.textContent = card.Text;
-        cardText.className = "card-text";
-      
-
-
-
-console.log (post);
         
- createCards ();
-
-         })
-
       
         }
+}
        
     /** in the card- I need  
      * author.name 
@@ -90,45 +115,3 @@ console.log (post);
      * 
      * */ 
 
-/*  dette er != struktur enn profile card struktur- tatt i bruk profil Card struktur. 
-
-
-const postContainer = document.createElement ("div"); 
-        Container.className = "container ";
-
-       const row = document.createElement ("div"); 
-        row.className = "row";
-
-
-       const colRow = document.createElement ("div"); 
-       colrow.className = "row justify-content-center align-items-center text-center col";
-
-
-       const card = document.createElement ("div");
-        card.className = "card mb-3"
-        card.style="max-width: 540px";
-        card.id = element.id;
-
-       const cardRow = document.createElement ("div"); 
-        cardRow.className = "row g-0";
-
-
-        const img = document.createElement ("div");
-        img.className = "col-md-4";
-        const cardImg = document.createElement ("img");
-        cardImg.appendChild (cardImg);
-
-      const col = document.createElement ("div"); 
-       col.className = "col-md-8";
-
-      const cardBody = document.createElement ("div"); 
-       cardBody.className = "card-body";
-      
-
-      const postTitle = document.createElement ("h5"); 
-        postTitle.textContent = post.title;
-        postTitle.className = "card-title";
-
-      const postText = document.createElement ("p"); 
-        postText.textContent = card.Text;
-        postText.className = "card-text";*/
