@@ -26,7 +26,8 @@ const selectors =
     "#profileImageError",
     "#messageForUser",
     "#followerPosts",
-    "#confirmEdit"
+    "#confirmEdit",
+    "#followingList"
 ]
 //i map through the selector array and for each element i document.querySelector it
 const selected = selectors.map(value => document.querySelector(value))
@@ -46,7 +47,8 @@ const [
     profileImageError,
     messageForUser,
     followerPostsContainer,
-    confirmEditBtn
+    confirmEditBtn,
+    followingListContainer
 
 ] = selected
 
