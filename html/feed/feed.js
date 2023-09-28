@@ -24,7 +24,6 @@ const options = {
 }
 
 
-
 async function getPosts (headerOptions){
   try {
       const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
@@ -111,12 +110,12 @@ function generateProfileCards (data,container, userProfile){
     userNameSpan.className = 'font-weight-bold mr-2'; 
     userNameSpan.style.marginRight = "auto"; 
 
-    const smallTime = documentElement ('small'); 
+    const smallTime = document.createElement ('small'); 
     smallTime.className = 'text-muted'; 
     smallTime.textContent = timeStamp (element.created); 
     smallTime.style.marginRight = "10px"; 
     userNameAndTimeDiv.appendChild (userNameSpan); 
-    userNameAndTimeDiv.appendChild (samllTime); 
+    userNameAndTimeDiv.appendChild (smallTime); 
 
     //deleteBtnPost
 
@@ -150,7 +149,7 @@ pTitle.className ='d-flex justify-content-between';
 const spanTitle= document.createElement ('span'); 
 spanTitle.textContent = element.title; 
 pTitle.appendChild (spanTitle);
-cardBody.appendChild (pTittle); 
+cardBody.appendChild (pTitle); 
 
 //post Body 
 
