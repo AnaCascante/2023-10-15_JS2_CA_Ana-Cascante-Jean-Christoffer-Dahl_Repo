@@ -81,13 +81,14 @@ function generateProfileCards (data,container, userProfile){
     card.id = element.id;
 
     const row = document.createElement ('div'); 
-    row.className = ' row g-0'; 
+    row.className = 'row g-0'; 
 
     const colImage = document.createElement ('div'); 
     colImage.className = 'col-md-auto py-2 pl-3';
 
     const userImg = document.createElement ('div'); 
     userImg.src = element.author.avatar ?? "../../img/lion2.jpg"; 
+    // change jpg- 
     userImg.className = 'rounded-circle img-fluid'; 
     userImg.style = 'width: 50px; height: 50px; display: block;'; 
      
@@ -293,9 +294,9 @@ commentCollapse.appendChild (commentForm);
 //modify btnComment to controll the collapse of comment section 
 
 btnComment.setAttribute ('data-bs-toggle','collapse'); 
-btnComment.setAttribute ('data-bs-target','#commentCollapse${element.id}'); 
+btnComment.setAttribute ('data-bs-target',`#commentCollapse${element.id}`); 
 btnComment.setAttribute ('aria-expanded','false'); 
-btnComment.setAttribute ('aria-controls','commentCollapse${element.id}'); 
+btnComment.setAttribute ('aria-controls',`commentCollapse${element.id}`); 
     
 cardBody.appendChild (commentCollapse); 
 
@@ -334,77 +335,3 @@ element.comments.forEach (comment => {
 
 });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*userName =  localStorage.getItem('name', userName); 
-const cardContainer = document.getElementById ('cardContainer'); 
-
-const cardTitle = document.getElementById ('cardTitle'); 
-const cardText = document.getElementById ('cardText'); 
-const cardImg = document.getElementById ('cardImg'); 
-
-
-let token
-token = localStorage.getItem('bearerToken', token);
-
-const options ={
-    method:"GET",
-    credentials:"same-origin",
-    headers:{
-        "Content-Type":"application/json",
-    Authorization: `Bearer ${token}`,
-}
-}
-
-
-
-
-
-/* this is the js from hell part 2 */
-
-/*---- structure from html for th card  --- transform this into js
-
-
-async function createCards (post){
-        const posts = await getPosts()
-
-      posts.forEach (post => {
-
-        
-      
-        }
-}
-       
-    /** in the card- I need  
-     * author.name 
-     * title 
-     * body 
-     * comments 
-     * id 
-     * media 
-     * reaction 
-     * _count.comments 
-     * _count.reaction
-     * 
-     * */ 
-
