@@ -14,6 +14,7 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
 
+    <script src = "../utils/logout.js" type = "module"></script>
     <script src="feed.js" type="module"></script>
 </head>
 
@@ -21,29 +22,137 @@
  <header> 
    <nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark m-3">
 
-      <ul class="nav justify-content-end">
-
+     
         <a class="navbar-brand" href="/html/feed/feed.html">
           <img src="/img/mouselogo.jpg" class="rounded-circle mx-auto d-block img-fluid"  alt="mouse with glasses" width="30" height="24">
         </a>
-        <li class="nav-item">
-          <a class="nav-link link-white" href="/html/feed.html">Nerdsnett</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-white" href="/html/profile.html">My profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-white disabled">log out</a>
-        </li>
-        
-      </ul>
+
+        <button class =" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target ="#navbarNav" aria-controls ="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class ="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+          <a class="nav-link" href="/html/feed.html">Nerdsnett</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/html/profile.html">My profile</a>
+          </li>
+          <li class="nav-item">
+            <button class = " nav-link" tabindex="-1" id="logOut">Log out</button>
+          </li>
+        </ul>
     </nav>
  </header>
 
-      <h1><span class="badge bg-secondary">Kira</span></h1>
+ <main class="container custom-container" id="feed-container">
+
+  <h1 class="text-white">Nerdsnett</h1>
+    <nav class="nav-container mb-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link active" id="sort-tab" data-bs-toggle="pill" href="#sort">Sort</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="filter-tab" data-bs-toggle="pill" href="#filter">Filter</a>
+        </li><li class="nav-item">
+          <a class="nav-link" id="search-tab" data-bs-toggle="pill" href="#search">Search</a>
+        </li><li class="nav-item">
+          <a class="nav-link" id="create-post-tab" data-bs-toggle="pill" href="#create-post">Create Post</a>
+        </li>
+      </ul>
+
+      <div class="tab-content mt-4">
+        <!--sort content-->
+        <div class="tab-pane fade show active" id="sort" role="tabpanel" aria-labelledby="sort-tab">
+          <select id="sortSelect" class="form-control">
+            <option value="latest">Latest</option>
+            <option value="oldest">Oldest</option>
+            <!-- Add more sort options as needed -->
+        </select>
+        </div>
+
+        <!-- Filter Content -->
+        <div class="tab-pane fade" id="filter" role="tabpanel" aria-labelledby="filter-tab">
+          <select id="filterSelect" class="form-control">
+              <option value="all">All Posts</option>
+              <option value="liked">Liked Posts</option>
+              <!-- Add more filter options as needed -->
+          </select>
+        </div>
+
+         <!-- Search Content -->
+         <div class="tab-pane fade" id="search" role="tabpanel" aria-labelledby="search-tab">
+          <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+        </div>
+
+        <!-- Create Post Content -->
+        <div class="tab-pane fade" id="create-post" role="tabpanel" aria-labelledby="create-post-tab">
+          <form id="createPostForm">
+              <div class="form-group">
+                  <label for="title" class="text-white">Title *</label>
+                  <input type="text" class="form-control" id="title" required>
+              </div>
+              <div class="form-group mt-3">
+                  <label for="body" class="text-white" >Body *</label>
+                  <textarea class="form-control" id="body" rows="3" required></textarea>
+              </div>
+              <div class="form-group mt-3">
+                  <label for="imageUrl" class="text-white">Image URL (optional)</label>
+                  <input type="text" class="form-control" id="imageUrl">
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Post</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+ </main>
+
+   <!--MODAL FOR EDIT POST : )-->
+   <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPostModalLabel">Edit Post</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editTitle" class="form-control my-2" placeholder="Edit title">
+          <input type="text" id="editBody" class="form-control my-2" placeholder="Edit post content">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="confirmEdit">Edit Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ <!--
+ <h1><span class="badge bg-secondary">Kira</span></h1>
  
 
-      <!--this is the section for sort and search options -->
+      this is the section for sort and search options 
 
       <div class="container">
         <div class="row">
@@ -62,7 +171,7 @@
             </form>
           </div>
         </div>
-       </div>
+       </div>-->
       
       
 
