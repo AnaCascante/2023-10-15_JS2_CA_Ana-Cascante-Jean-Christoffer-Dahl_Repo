@@ -307,8 +307,7 @@ function generateProfileCards(data, container, userProfile) {
 
     const spanLike = document.createElement('span');
     spanLike.id = `likeCount${element.id}`;
-    spanLike.textContent = element.reactions[0].count;
-    console.log(element)
+    spanLike.textContent = element?.reactions[0]?.count;
     btnLike.appendChild(spanLike);
 
     //edit btn

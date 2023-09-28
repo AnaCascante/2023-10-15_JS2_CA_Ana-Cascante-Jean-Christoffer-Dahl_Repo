@@ -3,6 +3,9 @@
   import reactToPosts from "../utils/helpers/reactToPosts.js";
   import deletePost from "../utils/helpers/deletePost.js";
   import editPost from "../utils/helpers/editPost.js";
+  import getProfile from "../utils/helpers/getProfile.js"
+  import follow from "../utils/helpers/follow.js"
+
   const feedContainer = document.querySelector("#feed-container")
 const confirmEditBtn = document.querySelector("#confirmEdit")
   let token
@@ -60,7 +63,7 @@ confirmEditBtn.addEventListener('click', async function(event) {
   let updatedBody = document.querySelector('#editBody').value;
 
   const response = await editPost(baseURL,postId,updatedTitle,updatedBody, token);
-  console.log(response)
+
   if(response.updated > response.created) {
 
     const postCard = document.getElementById(postId);
@@ -88,6 +91,52 @@ generatePage()
 
 
 
+
+
+
+//userModal from hell
+async function userModal(element) {
+
+  
+  const userBio = await getProfile(baseURL,element.author?.name,options)
+  console.log(userBio)
+  const modal = new bootstrap.Modal(document.getElementById('userProfileModal'));
+
+  const modalHeaderImg = document.getElementById('modalHeaderImg');
+  const modalProfileImg = document.getElementById('modalProfileImg');
+  const userBioModalName = document.getElementById("userBioModalName");
+  const followingCount = document.getElementById("followingCount")
+  const followersCount = document.getElementById("followingCount")
+  const followModalButton = document.getElementById("followModalButton")
+
+  followModalButton.textContent = "Follow"
+  followModalButton.disabled = false
+
+  modalHeaderImg.src = element.author?.header ?? "/img/lion2.jpg";
+  modalProfileImg.src = element.author?.avatar ?? "/img/lion2.jpg";
+  userBioModalName.textContent = `@${element.author?.name}`
+  followingCount.textContent = userBio.following.length
+  followersCount.textContent =  userBio.followers.length
+
+
+  modal.show();
+
+  const followClickListener = handleFollowButtonClick(element.author?.name);
+
+  followModalButton.addEventListener("click", followClickListener);
+
+  modal._element.addEventListener('hidden.bs.modal', function() {
+      followModalButton.removeEventListener("click", followClickListener);
+  });
+}
+function handleFollowButtonClick(authorName) {
+  return function(event) {
+      follow(baseURL, authorName, token, event.currentTarget);
+  };
+}
+
+
+
   function generateProfileCards(data, container,userProfile) {
 
     // this is a big drawback for using vanilla js to create medium-large webapps, it will be much easier working with html and js when you start with frameworks so dont get scared by this horrible long document.create
@@ -103,9 +152,9 @@ generatePage()
         const colImage = document.createElement('div');
         colImage.className = 'col-md-auto py-2 pl-3';
         const userImg = document.createElement('img');
-        userImg.src = element.author.avatar ?? "../../img/lion2.jpg";
+        userImg.src = element.author?.avatar ?? "../../img/lion2.jpg";
         userImg.className = 'rounded-circle img-fluid';
-        userImg.style = 'width: 50px; height: 50px; display: block;';
+        userImg.style = 'width: 50px; height: 50px; display: block; cursor:pointer;';
         colImage.appendChild(userImg);
     
         const colContent = document.createElement('div');
@@ -121,14 +170,25 @@ generatePage()
         usernameSpan.textContent = element.author?.name.charAt(0).toUpperCase() +  element.author?.name.slice(1)
         usernameSpan.className = 'font-weight-bold mr-2';
         usernameSpan.style.marginRight = "auto";
+        usernameSpan.style.cursor = "pointer"
         const smallTime = document.createElement('small');
         smallTime.className = 'text-muted';
         smallTime.textContent = timeStamp(element.created);
         smallTime.style.marginRight = "10px"
         usernameAndTimeDiv.appendChild(usernameSpan);
         usernameAndTimeDiv.appendChild(smallTime);
-    
-    
+        
+        
+        colImage.addEventListener('click',() => {
+
+          userModal(element)
+
+      });
+      usernameSpan.addEventListener("click",() => {
+        userModal(element)
+      })
+
+
         //deleteButtonPost
     
         if (userName ===  element.author?.name) {
@@ -171,7 +231,7 @@ generatePage()
           mediaWrapper.className = "w-100";
     
           const postMedia = document.createElement("img");
-          postMedia.src = element.media;
+          postMedia.src = element.media ?? "";
           postMedia.className = "rounded img-fluid";
           
           mediaWrapper.appendChild(postMedia);
@@ -206,8 +266,16 @@ generatePage()
     
         const spanLike = document.createElement('span');
         spanLike.id = `likeCount${element.id}`;
-        spanLike.textContent = element.reactions[0]?.count;
-        console.log(element)
+
+
+        const thumbReaction = element?.reactions?.find(reaction => reaction.symbol === "👍");
+        const count = thumbReaction?.count;
+
+        spanLike.textContent = count;
+
+
+
+
         btnLike.appendChild(spanLike);
     
         //edit btn
@@ -240,6 +308,7 @@ generatePage()
         //likeButton eventListener
         btnLike.addEventListener("click",(e)=>{
           reactToPosts(baseURL,element.id,token,spanLike)
+         console.log(element)
      
         })
         
@@ -283,7 +352,7 @@ generatePage()
             if (commentText) {
     
                 postComment(baseURL,element.id,commentText,token,spanComment,element);
-    
+
                 commentInput.value = '';
               
             }
@@ -329,6 +398,17 @@ generatePage()
         cardBody.appendChild(commentsPanel);
     
         btnComment.addEventListener('click', function() {
+
+
+          document.getElementById('modalPostContent').innerText = element.body;
+
+          // If you want to display existing comments, loop through them and append to 'modalCommentsSection'
+      
+          // Display the modal
+          let postCommentModal = new bootstrap.Modal(document.getElementById('postCommentModal'));
+          postCommentModal.show();
+
+          
             if(commentsPanel.style.display === 'none') {
                 commentsPanel.style.display = 'block';
             } else {
