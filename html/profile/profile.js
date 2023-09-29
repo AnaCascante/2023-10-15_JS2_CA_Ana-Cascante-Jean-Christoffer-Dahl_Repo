@@ -176,52 +176,43 @@ confirmEditBtn.addEventListener('click', async function(event) {
 });
 
 generateHTML()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // function from hell
 function generateProfileCards(data, container, userProfile) {
-  userProfile.following.forEach(follower => {
-    const userCard = document.createElement("div")
-    userCard.classList.add("userCard")
-    const imgContainer = document.createElement("div")
-    imgContainer.classList.add("img-container")
-    const avatar = document.createElement("img")
-    avatar.src = follower.avatar ?? ""
-    imgContainer.append(avatar)
 
-    const userName = document.createElement("p")
-    userName.classList.add("userName")
-    userName.textContent = follower.name
-    userName.classList.add("text-white")
+  if(userProfile.name === userName){
+    console.log(userProfile)
+    userProfile.following.forEach(follower => {
+      const userCard = document.createElement("div")
+      userCard.classList.add("userCard")
+      const imgContainer = document.createElement("div")
+      imgContainer.classList.add("img-container")
+      const avatar = document.createElement("img")
+      avatar.src = follower.avatar ?? ""
+      imgContainer.append(avatar)
+  
+      const userName = document.createElement("p")
+      userName.classList.add("userName")
+      userName.textContent = follower.name
+      userName.classList.add("text-white")
+  
+      const followButton = document.createElement("button")
+      followButton.classList.add("followBtnUser")
+      followButton.textContent = "Unfollow"
+  
+      followButton.id = follower.name
+  
+      followButton.addEventListener("click", (e)=> {
+        console.log(e.currentTarget)
+        follow(baseURL,follower.name,token,e.currentTarget,"unfollow")
+        userCard.remove()
+        followingCount.textContent --
+      } )
+  
+      userCard.append(imgContainer,userName,followButton)
+      followingListContainer.append(userCard)
+    })
+  }
 
-    const followButton = document.createElement("button")
-    followButton.classList.add("followBtnUser")
-    followButton.textContent = "Unfollow"
-
-    followButton.id = follower.name
-
-    followButton.addEventListener("click", (e)=> {
-      console.log(e.currentTarget)
-      follow(baseURL,follower.name,token,e.currentTarget,"unfollow")
-      userCard.remove()
-      followingCount.textContent --
-    } )
-
-    userCard.append(imgContainer,userName,followButton)
-    followingListContainer.append(userCard)
-  })
   
 // this is a big drawback for using vanilla js to create medium-large webapps, it will be much easier working with html and js when you start with frameworks so dont get scared by this horrible long document.create
   data.forEach(element => {
@@ -498,8 +489,3 @@ function generateProfileCards(data, container, userProfile) {
     container.appendChild(card);
   });
 }
-
-
-
-
-
