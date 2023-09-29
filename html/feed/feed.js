@@ -28,7 +28,7 @@ async function getPosts (headerOptions){
   try {
       const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
       const posts= await response.json();
-      console.log (posts); 
+      
       return posts;
   } catch (error){
       console.log (error);
@@ -202,7 +202,7 @@ const spanLike = document.createElement ('span');
 spanLike.id= `likeCount${element.id}`; 
 spanLike.textContent = element.reactions [0]?.count; 
 
-console.log (element)
+
 btnLike.appendChild (spanLike); 
 
 // edit btn 
