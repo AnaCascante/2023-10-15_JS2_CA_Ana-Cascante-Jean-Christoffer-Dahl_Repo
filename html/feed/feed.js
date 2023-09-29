@@ -54,7 +54,7 @@ confirmEditBtn.addEventListener('click', async function(event){
   const response = await editPost (baseUrl, postId, updatedTitle, updatedBody, token); 
   console.log (response)
 
-  if (response.updated > resposne.created){
+  if (response.updated > response.created){
     const postCard = document.getElementById (postId); 
     const titleElement = postCard.querySelector ('span'); 
     const bodyElement = postCard.querySelector ('.card-text'); 
