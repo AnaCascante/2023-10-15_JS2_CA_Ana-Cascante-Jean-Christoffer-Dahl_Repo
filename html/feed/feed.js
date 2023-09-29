@@ -85,10 +85,9 @@ function generateProfileCards (data,container, userProfile){
 
     const colImage = document.createElement ('div'); 
     colImage.className = 'col-md-auto py-2 pl-3';
-
-    const userImg = document.createElement ('div'); 
-    userImg.src = element.author.avatar ?? "../../img/lion2.jpg"; 
-    // change jpg- 
+    
+    const userImg = document.createElement ('img'); 
+    userImg.src = element.author.avatar ?? "../../img/lion2.jpg";
     userImg.className = 'rounded-circle img-fluid'; 
     userImg.style = 'width: 50px; height: 50px; display: block;'; 
      
@@ -241,7 +240,7 @@ if (userName === element.author.name){
 // likeBtn eventListener 
 
 btnLike.addEventListener ("click", (e)=>{
-  reactToPosts (baseUrl, element.id, token, spanlike)
+  reactToPosts (baseUrl, element.id, token, spanLike)
 })
 
 btnGroup.appendChild (btnComment); 
@@ -330,8 +329,13 @@ element.comments.forEach (comment => {
       commentsPanel.style.display = 'none'; 
     } 
 
-  container.appendChild (card); 
+  
 }); 
 
+
+
 });
+
+container.appendChild (card); 
+
 }
