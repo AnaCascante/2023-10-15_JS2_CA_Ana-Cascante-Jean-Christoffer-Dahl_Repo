@@ -333,9 +333,10 @@ element.comments.forEach (comment => {
 }); 
 
 
+container.appendChild (card);
+
 
 });
 
-container.appendChild (card); 
 
 }
