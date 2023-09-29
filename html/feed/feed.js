@@ -357,16 +357,6 @@ function generateProfileCards(data, container, userProfile) {
     cardBody.appendChild(commentsPanel);
 
     btnComment.addEventListener("click", function () {
-      document.getElementById("modalPostContent").innerText = element.body;
-
-      // If you want to display existing comments, loop through them and append to 'modalCommentsSection'
-
-      // Display the modal
-      let postCommentModal = new bootstrap.Modal(
-        document.getElementById("postCommentModal")
-      );
-      postCommentModal.show();
-
       if (commentsPanel.style.display === "none") {
         commentsPanel.style.display = "block";
       } else {
@@ -377,3 +367,4 @@ function generateProfileCards(data, container, userProfile) {
     container.appendChild(card);
   });
 }
+

@@ -7,13 +7,8 @@
 }
 .delete-comment-btn:hover i{
     color: red;
+
 }
-
-
-
-
-
-
 .profile-container {
     max-width: 600px;
     margin: 0 auto;
@@ -52,4 +47,7 @@
 }
 
 
+
+
+}
 
