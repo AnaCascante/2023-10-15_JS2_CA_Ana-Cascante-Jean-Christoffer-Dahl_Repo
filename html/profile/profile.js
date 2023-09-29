@@ -174,8 +174,7 @@ confirmEditBtn.addEventListener('click', async function(event) {
 
 });
 
-generateHTML()
-
+//generateHTML()
 
 
 
@@ -192,7 +191,24 @@ generateHTML()
 
 // function from hell
 function generateProfileCards(data, container, userProfile) {
+  userProfile.following.forEach(follower => {
+    console.log(follower)
+    const userCard = document.createElement("div")
+    
+    const imgContainer = document.createElement("div")
+    const avatar = document.createElement("img")
+    avatar.src = follower.avatar
+    imgContainer.append(avatar)
 
+    const userName = document.createElement("p")
+    userName.textContent = follower.name
+
+    const followButton = document.createElement("button")
+
+    userCard.append(imgContainer,userName,followButton)
+    followingListContainer.append(userCard)
+  })
+  
 // this is a big drawback for using vanilla js to create medium-large webapps, it will be much easier working with html and js when you start with frameworks so dont get scared by this horrible long document.create
   data.forEach(element => {
  
@@ -309,7 +325,12 @@ function generateProfileCards(data, container, userProfile) {
 
     const spanLike = document.createElement('span');
     spanLike.id = `likeCount${element.id}`;
-    spanLike.textContent = element?.reactions[0]?.count;
+
+    const thumbReaction = element?.reactions?.find(
+      (reaction) => reaction.symbol === "👍"
+    );
+    const count = thumbReaction?.count;
+    spanLike.textContent = count;
     btnLike.appendChild(spanLike);
 
     //edit btn
