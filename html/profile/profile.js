@@ -7,6 +7,7 @@ import getPostsByProfile from "../utils/helpers/getPostsByProfile.js";
 import reactToPosts from "../utils/helpers/reactToPosts.js";
 import deletePost from "../utils/helpers/deletePost.js";
 import editPost from "../utils/helpers/editPost.js";
+import follow from "../utils/helpers/follow.js";
 // file is getting really big, lots of functions :P will do a propper cleanup later, but it works :P
 
 //stores html id's in a array to escape document.queryselector hell in vanilla js
@@ -174,7 +175,7 @@ confirmEditBtn.addEventListener('click', async function(event) {
 
 });
 
-//generateHTML()
+generateHTML()
 
 
 
@@ -192,18 +193,31 @@ confirmEditBtn.addEventListener('click', async function(event) {
 // function from hell
 function generateProfileCards(data, container, userProfile) {
   userProfile.following.forEach(follower => {
-    console.log(follower)
     const userCard = document.createElement("div")
-    
+    userCard.classList.add("userCard")
     const imgContainer = document.createElement("div")
+    imgContainer.classList.add("img-container")
     const avatar = document.createElement("img")
-    avatar.src = follower.avatar
+    avatar.src = follower.avatar ?? ""
     imgContainer.append(avatar)
 
     const userName = document.createElement("p")
+    userName.classList.add("userName")
     userName.textContent = follower.name
+    userName.classList.add("text-white")
 
     const followButton = document.createElement("button")
+    followButton.classList.add("followBtnUser")
+    followButton.textContent = "Unfollow"
+
+    followButton.id = follower.name
+
+    followButton.addEventListener("click", (e)=> {
+      console.log(e.currentTarget)
+      follow(baseURL,follower.name,token,e.currentTarget,"unfollow")
+      userCard.remove()
+      followingCount.textContent --
+    } )
 
     userCard.append(imgContainer,userName,followButton)
     followingListContainer.append(userCard)

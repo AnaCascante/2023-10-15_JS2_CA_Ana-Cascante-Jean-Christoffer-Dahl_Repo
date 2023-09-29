@@ -1,6 +1,6 @@
-async function follow(url,userName,token,btn){
+async function follow(url,userName,token,btn, follow_Unfollow = "follow"){
     try{
-      const response = await fetch(`${url}/social/profiles/${userName}/follow`,
+      const response = await fetch(`${url}/social/profiles/${userName}/${follow_Unfollow}`,
       {
         method:"PUT",
         headers: {
@@ -10,7 +10,7 @@ async function follow(url,userName,token,btn){
         }
       )
       const responseData = await response.json()
-      if(response.ok){
+      if(response.ok && follow_Unfollow !== "unfollow" ){
         btn.disabled = true
         btn.textContent = "Followed!"
       }
