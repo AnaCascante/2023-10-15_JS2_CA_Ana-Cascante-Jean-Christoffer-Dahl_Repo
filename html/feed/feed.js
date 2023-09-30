@@ -4,6 +4,8 @@ import reactToPosts from "../utils/helpers/reactToPosts.js";
 import deletePost from "../utils/helpers/deletePost.js"; 
 import editPost from "../utils/helpers/editPost.js"; 
 
+
+
 const feedContainer =document.querySelector ("#feed-container")
 const confirmEditBtn = document.querySelector ("#confirmEdit")
 
@@ -340,3 +342,63 @@ container.appendChild (card);
 
 
 }
+
+
+
+
+
+
+  const sortBtnHtml = document.querySelector ("#Html")
+
+  async function sortedPosts (posts){
+
+
+
+  }
+
+
+  sortBtnHtml.addEventListener('click', async function(){
+
+    const sortedPosts = posts.sort(post => post.id === "Html")
+   
+    return sortedPosts
+
+  })
+
+
+  
+
+
+  GET /postsort=-title
+
+  
+
+
+
+
+
+/* we can sort with the parameters sort - sortOrder (by default desc, can use asc to sort ascending). 
+
+/auction/listings?_tag=my_tag&_active=true-- this will filter by _tag. 
+
+/auction/listings/<id> ---- returns a single listing. 
+
+
+async function filterPostByProperty (posts){
+
+  const filteredPosts = posts.filter(post => post._tag === "something")
+  return filteredPosts
+
+}
+
+select.addEventListener("change",filterPostByProperty(data))
+
+
+search.addEventListener("submit",filterPostByProperty(data))
+
+
+
+/post?sort=length&userName=desc
+/post?sort=length&_tag=desc
+/post?sort=title&order=asc-- something that could be use on search function?? 
+*/
