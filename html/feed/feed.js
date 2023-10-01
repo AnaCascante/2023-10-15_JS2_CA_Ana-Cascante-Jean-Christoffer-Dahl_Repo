@@ -342,8 +342,25 @@ container.appendChild (card);
 
 }
 
+
+
+
 const filterBtnTag = document.querySelector ("#tag")
 
+
+async function getTags (headerOptions){
+  try {
+      const response = await fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
+      const tag= await response.json();
+      console.log (tag)
+      return tag;
+  } catch (error){
+      console.log (error);
+  }
+}
+
+
+/*
 fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
 .then((response) => {
   if (response.ok) {
@@ -358,11 +375,13 @@ fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
 })
 .catch((error) => {
   console.log(error)
-});
+});*/
 
 
 
-
+filterBtnTag.addEventListener ('click', (){
+  
+})
 
 /*
 
