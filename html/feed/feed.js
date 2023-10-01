@@ -30,7 +30,6 @@ async function getPosts (headerOptions){
   try {
       const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
       const posts= await response.json();
-      console.log(posts); /* remeber to remove!!*/
       return posts;
   } catch (error){
       console.log (error);
@@ -343,6 +342,30 @@ container.appendChild (card);
 
 }
 
+const filterBtnTag = document.querySelector ("#tag")
+
+fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
+.then((response) => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Error');
+})
+.then((posts) => {
+  const filterBtnTag = posts.filter(tags => tags._tags.length > 0)
+  console.log (filterBtnTag);
+  return filterBtnTag;
+})
+.catch((error) => {
+  console.log(error)
+});
+
+
+
+
+
+/*
+
 
 
 const filterBtnTag = document.querySelector ("#tag")
@@ -351,7 +374,7 @@ filterBtnTag.addEventListener ('click', async function (){
   try {
     const response = await fetch (`${baseUrl}/social/posts?/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
     const myTag= await response.json();
-    console.log(myTag); /* remeber to remove!!*/
+    console.log(myTag); 
     return myTag ;
     } catch (error){
     console.log (error);
@@ -360,12 +383,16 @@ filterBtnTag.addEventListener ('click', async function (){
 
 
 
+const sortBtnHtml = document.querySelector ("#html")
 
+sortBtnHtml.addEventListener('click', async function(){
 
+  const sortedPosts = posts.sort(post => post.id === "Html")
+ 
+  console.log (sortBtnHtml);
+  return sortedPosts
 
-
-/*
-
+})
 
 
   sortBtnHtml.addEventListener('click', async function(){
@@ -377,7 +404,6 @@ filterBtnTag.addEventListener ('click', async function (){
   })
 
 
-  
 
 
   GET /postsort=-title
