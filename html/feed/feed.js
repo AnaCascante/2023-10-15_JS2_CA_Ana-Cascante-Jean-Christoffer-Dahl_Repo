@@ -30,7 +30,7 @@ async function getPosts (headerOptions){
   try {
       const response = await fetch (`${baseUrl}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions); 
       const posts= await response.json();
-      
+      console.log(posts); /* remeber to remove!!*/
       return posts;
   } catch (error){
       console.log (error);
@@ -345,16 +345,27 @@ container.appendChild (card);
 
 
 
+const filterBtnTag = document.querySelector ("#tag")
+
+filterBtnTag.addEventListener ('click', async function (){
+  try {
+    const response = await fetch (`${baseUrl}/social/posts?/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
+    const myTag= await response.json();
+    console.log(myTag); /* remeber to remove!!*/
+    return myTag ;
+    } catch (error){
+    console.log (error);
+    }   
+})
 
 
 
-  const sortBtnHtml = document.querySelector ("#Html")
-
-  async function sortedPosts (posts){
 
 
 
-  }
+
+/*
+
 
 
   sortBtnHtml.addEventListener('click', async function(){
