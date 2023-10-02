@@ -140,7 +140,7 @@ function handleFollowButtonClick(authorName) {
     follow(baseURL, authorName, token, event.currentTarget);
   };
 }
-
+// will be moved to utilsFolder
 async function handleFormSubmit(e, element, spanComment, commentCountModal, commentSectionModal) {
   e.preventDefault();
 
@@ -173,14 +173,14 @@ async function handleFormSubmit(e, element, spanComment, commentCountModal, comm
       }
   }
 }
-
+// will be moved to utilsFolder
 function appendCommentsToModal(comments, commentSectionModal) {
   comments.forEach(comment => {
       const [author, commentElem] = createCommentElement(comment);
       commentSectionModal.append(author, commentElem);
   });
 }
-
+// will be moved to utilsFolder
 function createCommentElement(comment) {
   const commentElem = document.createElement("p");
   const authorElem = document.createElement("h6");
@@ -190,7 +190,7 @@ function createCommentElement(comment) {
 
   return [authorElem, commentElem];
 }
-generatePage();
+
 function generateProfileCards(data, container) {
   
   data.forEach((element) => {
@@ -388,3 +388,4 @@ function generateProfileCards(data, container) {
   
 }
 
+generatePage();
