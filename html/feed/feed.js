@@ -345,23 +345,17 @@ container.appendChild (card);
 
 
 
-const filterBtnTag = document.querySelector ("#tag")
+const tagBtn = document.querySelector ("#tagbtn")
 
 
-async function getTags (headerOptions){
-  try {
-      const response = await fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
-      const tag= await response.json();
-      console.log (tag)
-      return tag;
-  } catch (error){
-      console.log (error);
-  }
-}
 
 
-/*
-fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
+
+
+
+select.addEventListener ("tagbtn", () => {
+
+  fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
 .then((response) => {
   if (response.ok) {
     return response.json();
@@ -375,16 +369,43 @@ fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`)
 })
 .catch((error) => {
   console.log(error)
-});*/
+});
+
+tagBtn ()
+
+  })
 
 
 
-filterBtnTag.addEventListener ('click', (){
-  
-})
+/*
+*/
+
+
+
 
 /*
 
+function tagBtn (){
+  try {
+    const response = await fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
+    const tag= await response.json();
+    console.log (tag)
+    return tag;
+} catch (error){
+    console.log (error);
+}
+}
+
+async function getTags (headerOptions){
+  try {
+      const response = await fetch (`${baseUrl}/auction/listings?_tag=my_tag&_active=true`,headerOptions); 
+      const tag= await response.json();
+      console.log (tag)
+      return tag;
+  } catch (error){
+      console.log (error);
+  }
+}
 
 
 const filterBtnTag = document.querySelector ("#tag")
