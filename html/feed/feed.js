@@ -392,28 +392,6 @@ generatePage();
 
 
 
-// filter posts that are liked 
-
-/*const select =document.getElementById ("likedPost");
-const likedPost = document.querySelector ("#likedPost");
-select.addEventListener ('click',async () => {
-    const response = await fetch (`${baseURL}/posts?_count.reactions=true`)
-    if (response && response.ok) {
-     return response.json ();
-      select ();
-} 
-
-likedPost ()
-
-}); */
-
-
-async function likedPost () {
-  const response = await fetch (`${baseURL}/posts?_count.reactions>=1`)
-  console.log (response)
-
-}
-
 
 
 
