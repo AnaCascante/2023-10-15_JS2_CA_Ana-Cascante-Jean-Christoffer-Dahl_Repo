@@ -54,10 +54,7 @@ const
 
 async function getPosts(headerOptions) {
   try {
-    const response = await fetch(
-      `${baseURL}/social/posts?_author=true&_comments=true&_reactions=true`,
-      headerOptions
-    );
+    const response = await fetch(`${baseURL}/social/posts?_author=true&_comments=true&_reactions=true`,headerOptions);
     const posts = await response.json();
      
     return posts;
@@ -392,6 +389,17 @@ generatePage();
 
 
 
+const select =document.getElementById ("likedPost");
+const likedPost = document.querySelector ("#likedPost");
+select.addEventListener ('click',async () => {
+    const response = await fetch (`${baseURL}/posts?_count.reactions`)
+    if (response && response.ok) {
+     return response.json ();
+      select ();
+} 
 
+likedPost ()
+
+});
 
 
