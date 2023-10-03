@@ -59,7 +59,7 @@ async function getPosts(headerOptions) {
       headerOptions
     );
     const posts = await response.json();
-
+     
     return posts;
   } catch (err) {
     console.log(err);
@@ -389,3 +389,31 @@ function generateProfileCards(data, container) {
 }
 
 generatePage();
+
+
+
+// filter posts that are liked 
+
+/*const select =document.getElementById ("likedPost");
+const likedPost = document.querySelector ("#likedPost");
+select.addEventListener ('click',async () => {
+    const response = await fetch (`${baseURL}/posts?_count.reactions=true`)
+    if (response && response.ok) {
+     return response.json ();
+      select ();
+} 
+
+likedPost ()
+
+}); */
+
+
+async function likedPost () {
+  const response = await fetch (`${baseURL}/posts?_count.reactions>=1`)
+  console.log (response)
+
+}
+
+
+
+
