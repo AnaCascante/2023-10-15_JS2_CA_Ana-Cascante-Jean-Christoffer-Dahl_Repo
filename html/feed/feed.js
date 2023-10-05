@@ -402,4 +402,16 @@ likedPost ()
 
 });
 
+/* another option for sorting by likedPosts 
 
+const selectLikePosts = document.querySelector ("#likedPosts")
+
+
+selectLikePosts.addEventListener ('click', async () => {
+
+  posts.sort ((a,b) => a_count.reactions - b._count.reactions);
+
+  console.log (posts);
+})
+
+*/
