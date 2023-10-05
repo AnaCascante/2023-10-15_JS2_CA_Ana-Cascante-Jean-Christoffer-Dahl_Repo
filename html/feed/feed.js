@@ -76,7 +76,7 @@ generatePage ()
 function generateProfileCards (data,container, userProfile){
 
 
-  data.forEach(element => {
+  data.forEach((element) => {
 
     const card = document.createElement ('div'); 
     card.className = 'card mb-3 w-100 p-2'; 
@@ -346,59 +346,21 @@ container.appendChild (card);
 
 
 
+// sort by reactions
+
+const selectLikePosts = document.querySelector ("#likedPosts")
 
 
-  const sortBtnHtml = document.querySelector ("#Html")
+selectLikePosts.addEventListener ('click', async () => {
 
-  async function sortedPosts (posts){
+  posts.sort ((a,b) => a_count.reactions - b._count.reactions);
 
-
-
-  }
-
-
-  sortBtnHtml.addEventListener('click', async function(){
-
-    const sortedPosts = posts.sort(post => post.id === "Html")
-   
-    return sortedPosts
-
-  })
+  console.log (posts);
+})
 
 
   
 
 
-  GET /postsort=-title
-
-  
 
 
-
-
-
-/* we can sort with the parameters sort - sortOrder (by default desc, can use asc to sort ascending). 
-
-/auction/listings?_tag=my_tag&_active=true-- this will filter by _tag. 
-
-/auction/listings/<id> ---- returns a single listing. 
-
-
-async function filterPostByProperty (posts){
-
-  const filteredPosts = posts.filter(post => post._tag === "something")
-  return filteredPosts
-
-}
-
-select.addEventListener("change",filterPostByProperty(data))
-
-
-search.addEventListener("submit",filterPostByProperty(data))
-
-
-
-/post?sort=length&userName=desc
-/post?sort=length&_tag=desc
-/post?sort=title&order=asc-- something that could be use on search function?? 
-*/
