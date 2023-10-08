@@ -59,7 +59,7 @@ async function getPosts(headerOptions) {
       headerOptions
     );
     const posts = await response.json();
-
+     
     return posts;
   } catch (err) {
     console.log(err);
@@ -385,7 +385,8 @@ function generateProfileCards(data, container) {
 
     container.appendChild(card);
   });
+
   
+  generatePage();
 }
 
-generatePage();
