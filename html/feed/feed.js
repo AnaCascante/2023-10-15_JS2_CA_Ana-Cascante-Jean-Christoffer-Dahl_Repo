@@ -386,7 +386,21 @@ function generateProfileCards(data, container) {
     container.appendChild(card);
   });
 
-  
+
   generatePage();
 }
 
+const select =document.getElementById ("likedPost");
+const likedPost = document.querySelector ("#likedPost");
+select.addEventListener ('click',async () => {
+    const response = await fetch (`${baseURL}/posts?_count.reactions`)
+    if (response && response.ok) {
+     return response.json ();
+      select ();
+} 
+
+
+likedPost ()
+
+
+});
