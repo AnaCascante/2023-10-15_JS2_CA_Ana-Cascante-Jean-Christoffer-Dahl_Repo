@@ -289,8 +289,6 @@ function generateProfileCards(data, container) {
     commentButton.setAttribute("data-bs-toggle", "modal");
     commentButton.setAttribute("data-bs-target", "#postId");
 
-
-
     //modal for post with commentSection
     commentButton.addEventListener('click', function() {
       const modal = document.querySelector('#postId');
@@ -368,7 +366,6 @@ function generateProfileCards(data, container) {
       });
       specialFunctions.append(btnEdit);
     }
-    
     //everyone gets a appending :s
     likeBtn.append(iLike,spanLike)
     commentButton.append(iComment,spanComment);
