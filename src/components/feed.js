@@ -142,8 +142,8 @@ async function userModal(element) {
   followModalButton.textContent = "Follow";
   followModalButton.disabled = false;
 
-  modalHeaderImg.src = element.author?.header ;
-  modalProfileImg.src = element.author?.avatar ;
+  modalHeaderImg.src = element.author?.header ?? "./img/avatar.jpg" ;
+  modalProfileImg.src = element.author?.avatar ?? "./img/avatar.jpg" ;
   userBioModalName.textContent = `@${element.author?.name}`;
   followingCount.textContent = userBio.following.length;
   followersCount.textContent = userBio.followers.length;
@@ -254,7 +254,7 @@ function generateProfileCards(data, container) {
     //authorAvatar
     const cardProfileImage = document.createElement("img")
     cardProfileImage.className = "card-profile-img"
-    cardProfileImage.src= element.author?.avatar;
+    cardProfileImage.src= element.author?.avatar ?? "./img/avatar.jpg";
 
     //Author
     const cardName = document.createElement("p")
@@ -350,7 +350,7 @@ function submitHandler(e, element, spanComment, commentCountModal, commentSectio
       const commentForm = modal.querySelector("#modalCommentForm");
       const commentSectionModal = modal.querySelector("#commentSectionModal");
   
-      modalProfileImg.src = element.author?.avatar;
+      modalProfileImg.src = element.author?.avatar ?? "./img/avatar.jpg";
       modalUserName.textContent = element.author?.name
       modalHandle.textContent = "@ "+ element.author?.name
       modalPostImg.src = element.media;

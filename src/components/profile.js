@@ -121,10 +121,16 @@ async function generateHTML(){
 
     //get posts by followed users
     const userPostsFollow = data.following.map(async (n) => {
-      return await getPostsByProfile(baseURL, n.name, options);
+
+      const data = await getPostsByProfile(baseURL, n.name, options);
+
+      return data;
     });
-  
+    
     const resultsUserPosts = await Promise.all(userPostsFollow);
+    
+    // Flatten the results into a single array, fancy stuff:S
+    const mergedPosts = [].concat(...resultsUserPosts);
 
 
         //get userBio by followed users
@@ -133,18 +139,17 @@ async function generateHTML(){
         });
       
         const userBioResult = await Promise.all(userBio);
-    
-
+      
     profileName.textContent = data.name
     followingCount.textContent = data._count.following
     followersCount.textContent = data._count.followers
 
-    headerImg.src= data.banner
-    profileImg.src = data.avatar
+    headerImg.src= data.banner ??  "./img/avatar.jpg"
+    profileImg.src = data.avatar ?? "./img/avatar.jpg"
     //my posts
     generateProfileCards(getUserPosts, yourPosts,data)
     //people i follow posts
-    generateProfileCards(resultsUserPosts[0],followerPostsContainer,userBioResult[0])
+    generateProfileCards(mergedPosts,followerPostsContainer,userBioResult)
 
 }
 // edit function for editing post, uses data-attributes to get the post id from your posts
@@ -237,7 +242,7 @@ function generateProfileCards(data, container, userProfile) {
       const imgContainer = document.createElement("div")
       imgContainer.classList.add("img-container")
       const avatar = document.createElement("img")
-      avatar.src = follower.avatar ?? ""
+      avatar.src = follower.avatar ?? "./img/avatar.jpg"
       imgContainer.append(avatar)
   
       const userName = document.createElement("p")
@@ -279,7 +284,7 @@ function generateProfileCards(data, container, userProfile) {
     //authorAvatar
     const cardProfileImage = document.createElement("img")
     cardProfileImage.className = "card-profile-img"
-    cardProfileImage.src= element.author?.avatar;
+    cardProfileImage.src= element.author?.avatar ?? "./img/avatar.jpg";
 
     //Author
     const cardName = document.createElement("p")
@@ -376,7 +381,7 @@ function generateProfileCards(data, container, userProfile) {
         const commentForm = modal.querySelector("#modalCommentForm");
         const commentSectionModal = modal.querySelector("#commentSectionModal");
     
-        modalProfileImg.src = element.author?.avatar ;
+        modalProfileImg.src = element.author?.avatar ?? "./img/avatar.jpg";
         modalUserName.textContent = element.author?.name
         modalHandle.textContent = "@ "+ element.author?.name
         modalPostImg.src = element.media;
