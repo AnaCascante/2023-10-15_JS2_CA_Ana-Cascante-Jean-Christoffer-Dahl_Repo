@@ -29,6 +29,9 @@ button{
   border-radius: 999px;
   margin-right: 10px;
   display: block;
+  background-color: #212529;
+  border: none;
+  
 }
 .userInfo{
   position: relative;

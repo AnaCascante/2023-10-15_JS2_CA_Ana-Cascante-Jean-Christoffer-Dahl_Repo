@@ -1,12 +1,13 @@
-import timeStamp from "../utils/helpers/timeStamp.js";
-import postComment from "../utils/helpers/postComment.js";
-import reactToPosts from "../utils/helpers/reactToPosts.js";
-import deletePost from "../utils/helpers/deletePost.js";
-import editPost from "../utils/helpers/editPost.js";
-import getProfile from "../utils/helpers/getProfile.js";
-import follow from "../utils/helpers/follow.js";
-import createPost from "../utils/helpers/createPosts.js";
-import { getStartAndEndDatesForLastThreeDays, getStartAndEndDatesForToday } from "../utils/helpers/timeIsFun.js";
+import timeStamp from "../utils/timeStamp.js";
+import postComment from "../utils/postComment.js";
+import reactToPosts from "../utils/reactToPosts.js";
+import deletePost from "../utils/deletePost.js";
+import editPost from "../utils/editPost.js";
+import getProfile from "../utils/getProfile.js";
+import follow from "../utils/follow.js";
+import createPost from "../utils/createPosts.js";
+import filterPosts from "../utils/filterPost.js";
+import searchPosts from "../utils/search.js";
 let token;
 const baseURL = "https://api.noroff.dev/api/v1";
 let userName;
@@ -21,9 +22,6 @@ const options = {
     Authorization: `Bearer ${token}`,
   },
 };
-
-
-
 
 const cssSelectors =
 [
@@ -144,8 +142,8 @@ async function userModal(element) {
   followModalButton.textContent = "Follow";
   followModalButton.disabled = false;
 
-  modalHeaderImg.src = element.author?.header ?? "/img/lion2.jpg";
-  modalProfileImg.src = element.author?.avatar ?? "/img/lion2.jpg";
+  modalHeaderImg.src = element.author?.header ;
+  modalProfileImg.src = element.author?.avatar ;
   userBioModalName.textContent = `@${element.author?.name}`;
   followingCount.textContent = userBio.following.length;
   followersCount.textContent = userBio.followers.length;
@@ -219,74 +217,18 @@ function createCommentElement(comment) {
 //search
 document.getElementById("searchInput").addEventListener("input", function() {
   const searchValue = document.getElementById("searchInput").value.toLowerCase();
-  searchPosts(searchValue);
+  searchPosts(searchValue,getPosts,options,feedContainer,generateProfileCards);
 });
-function searchPosts(query) {
-  getPosts(options).then(data => {
-      const filteredData = data.filter(post => 
-          post.author?.name.toLowerCase().includes(query) ||
-          post.title.toLowerCase().includes(query) ||
-          post.body.toLowerCase().includes(query)
-      );
-
-      // Clear the existing posts from the container before displaying filtered results
-      feedContainer.textContent = '';
-
-      generateProfileCards(filteredData, feedContainer);
-  });
-}
 
 //filter
 
 document.getElementById("filterSelect").addEventListener("change", function() {
   const filterValue = this.value;
-  filterPosts(filterValue);
+  filterPosts(filterValue,feedContainer,generateProfileCards,getPosts,options,userName);
 });
 
-// Officer Jean is on the case
-function filterPosts(criteria) {
-  getPosts(options).then(data => {
-      let filteredData;
-      switch (criteria) {
-          case 'all':
-              filteredData = data;
-              break;
-          case 'lastThreeDays':
-              const [startThreeDays, endThreeDays] = getStartAndEndDatesForLastThreeDays();
-              filteredData = data.filter(post => {
-                  const postDate = new Date(post.created);
-                  return postDate >= startThreeDays && postDate <= endThreeDays;
-              });
-              break;
-          case 'today':
-              const [startToday, endToday] = getStartAndEndDatesForToday();
-              filteredData = data.filter(post => {
-                  const postDate = new Date(post.created);
-                  return postDate >= startToday && postDate <= endToday;
-              });
-              break;
-          case 'withImages':
-              filteredData = data.filter(post => post.media);
-              break;
-          case 'withoutImages':
-              filteredData = data.filter(post => !post.media);
-              break;
-          case 'withComments':
-              filteredData = data.filter(post => post._count.comments > 0);
-              break;
-          case 'withoutComments':
-              filteredData = data.filter(post => post._count.comments === 0);
-              break;
-          default:
-              filteredData = data;
-      }
 
-      // Clear the existing posts from the container before displaying filtered results
-      feedContainer.innerHTML = '';
 
-      generateProfileCards(filteredData, feedContainer, userName);
-  });
-}
 
 
 function generateProfileCards(data, container) {
@@ -312,7 +254,7 @@ function generateProfileCards(data, container) {
     //authorAvatar
     const cardProfileImage = document.createElement("img")
     cardProfileImage.className = "card-profile-img"
-    cardProfileImage.src= element.author?.avatar ?? "../../img/lion2.jpg";
+    cardProfileImage.src= element.author?.avatar;
 
     //Author
     const cardName = document.createElement("p")
@@ -408,10 +350,10 @@ function submitHandler(e, element, spanComment, commentCountModal, commentSectio
       const commentForm = modal.querySelector("#modalCommentForm");
       const commentSectionModal = modal.querySelector("#commentSectionModal");
   
-      modalProfileImg.src = element.author?.avatar ?? "../../img/lion2.jpg";
+      modalProfileImg.src = element.author?.avatar;
       modalUserName.textContent = element.author?.name
       modalHandle.textContent = "@ "+ element.author?.name
-      modalPostImg.src = element.media ?? "../../img/lion2.jpg";
+      modalPostImg.src = element.media;
       modalTitle.textContent = element.title;
       modalBody.textContent = element.body;
       commentCountModal.textContent = element._count.comments;

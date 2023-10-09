@@ -1,5 +1,5 @@
 
-import logIn  from "./utils/helpers/loginFunc.js";
+import logIn  from "../utils/loginFunc.js";
 const selectors =  [
     "#email",
     "#password",

@@ -5,7 +5,8 @@ function logout(){
     localStorage.removeItem('bearerToken');
     localStorage.removeItem('name');
     window.location.href = "../index.html";
-    console.log("he")
+
 }
 
 logOut.addEventListener("click",logout)
+console.log(logOut)

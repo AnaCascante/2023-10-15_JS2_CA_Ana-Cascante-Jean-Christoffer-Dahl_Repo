@@ -1,13 +1,13 @@
-import getProfile  from "../utils/helpers/getProfile.js"
-import postComment from "../utils/helpers/postComment.js";
-import updateMedia from "../utils/helpers/updateMedia.js";
-import getPostByProfile from "../utils/helpers/getPostsByProfile.js";
-import timeStamp from "../utils/helpers/timeStamp.js";
-import getPostsByProfile from "../utils/helpers/getPostsByProfile.js";
-import reactToPosts from "../utils/helpers/reactToPosts.js";
-import deletePost from "../utils/helpers/deletePost.js";
-import editPost from "../utils/helpers/editPost.js";
-import follow from "../utils/helpers/follow.js";
+import getProfile  from "../utils/getProfile.js"
+import postComment from "../utils/postComment.js";
+import updateMedia from "../utils/updateMedia.js";
+import getPostByProfile from "../utils/getPostsByProfile.js";
+import timeStamp from "../utils/timeStamp.js";
+import getPostsByProfile from "../utils/getPostsByProfile.js";
+import reactToPosts from "../utils/reactToPosts.js";
+import deletePost from "../utils/deletePost.js";
+import editPost from "../utils/editPost.js";
+import follow from "../utils/follow.js";
 // file is getting really big, lots of functions :P will do a propper cleanup later, but it works :P
 
 //stores html id's in a array to escape document.queryselector hell in vanilla js
@@ -279,7 +279,7 @@ function generateProfileCards(data, container, userProfile) {
     //authorAvatar
     const cardProfileImage = document.createElement("img")
     cardProfileImage.className = "card-profile-img"
-    cardProfileImage.src= element.author?.avatar ?? "../../img/lion2.jpg";
+    cardProfileImage.src= element.author?.avatar;
 
     //Author
     const cardName = document.createElement("p")
@@ -376,10 +376,10 @@ function generateProfileCards(data, container, userProfile) {
         const commentForm = modal.querySelector("#modalCommentForm");
         const commentSectionModal = modal.querySelector("#commentSectionModal");
     
-        modalProfileImg.src = element.author?.avatar ?? "../../img/lion2.jpg";
+        modalProfileImg.src = element.author?.avatar ;
         modalUserName.textContent = element.author?.name
         modalHandle.textContent = "@ "+ element.author?.name
-        modalPostImg.src = element.media ?? "../../img/lion2.jpg";
+        modalPostImg.src = element.media;
         modalTitle.textContent = element.title;
         modalBody.textContent = element.body;
         commentCountModal.textContent = element._count.comments;
