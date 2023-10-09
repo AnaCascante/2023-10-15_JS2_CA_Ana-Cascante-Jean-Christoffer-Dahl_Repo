@@ -22,7 +22,7 @@ async function logIn(url, data={}){
         localStorage.setItem('bearerToken', token);
         localStorage.setItem("name",userName)
         if(responseData && token){
-            window.location.href = "profile/profile.html";
+            window.location.href = "./profile.html";
             
        
         }
