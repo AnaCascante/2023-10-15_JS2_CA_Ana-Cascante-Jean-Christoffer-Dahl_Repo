@@ -1,5 +1,5 @@
 {
-  "name": "JS2 CA",
+  "name": "js2-ca",
   "version": "0.0.1",
   "description": "Building a Social media platform",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnaCascante/2023-09-03_CSS_Frameworks_CA_Ana-Cascante_Repo.git"
+    "url": "git+https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git"
   },
   "keywords": [
     "CSS",
@@ -20,12 +20,12 @@
     "SCSS",
     "SASS"
   ],
-  "author": "Ana Cascante <anacas71213@stud.noroff.no>",
+  "author": "Ana Cascante <anacas71213@stud.noroff.no> and Jean Christoffer Dahl <",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AnaCascante/2023-09-03_CSS_Frameworks_CA_Ana-Cascante_Repo.git/issues"
+    "url": "https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git/issues"
   },
-  "homepage": "https://github.com/AnaCascante/2023-09-03_CSS_Frameworks_CA_Ana-Cascante_Repo.git#readme",
+  "homepage": "https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git#readme",
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^5.3.1"
