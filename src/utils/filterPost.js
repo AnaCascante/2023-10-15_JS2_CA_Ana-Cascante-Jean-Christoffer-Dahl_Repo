@@ -1,4 +1,13 @@
-
+/**
+ * Filters and displays posts based on the specified criteria.
+ *
+ * @param {string} criteria - The filtering criteria, such as 'all', 'lastThreeDays', 'today', 'withImages', 'withoutImages', 'withComments', 'withoutComments'.
+ * @param {Element} feedContainer - The container where the filtered posts will be displayed.
+ * @param {Function} generateProfileCards - A function to generate and display profile cards.
+ * @param {Function} getPosts - A function to fetch posts.
+ * @param {Object} options - Options for fetching posts, including the authorization token.
+ * @param {string} userName - The name of the user.
+ */
 export default function filterPosts(criteria, feedContainer, generateProfileCards,getPosts,options,userName) {
     getPosts(options).then(data => {
         let filteredData;
@@ -44,7 +53,11 @@ export default function filterPosts(criteria, feedContainer, generateProfileCard
   }
 
 
-
+/**
+ * Gets the start and end dates for the last three days.
+ *
+ * @returns {Array} An array with two Date objects: the start date and end date for the last three days.
+ */
    function getStartAndEndDatesForLastThreeDays() {
     const now = new Date();
     
@@ -60,6 +73,11 @@ export default function filterPosts(criteria, feedContainer, generateProfileCard
     return [startOfThreeDaysAgo, endOfToday];
 }
 
+/**
+ * Gets the start and end dates for today.
+ *
+ * @returns {Array} An array with two Date objects: the start date and end date for today.
+ */
  function getStartAndEndDatesForToday() {
     const now = new Date();
     

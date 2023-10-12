@@ -1,5 +1,9 @@
-//func that formats date
-
+/**
+ * Formats a provided date into a human-readable timestamp string indicating how long ago the date occurred.
+ *
+ * @param {Date} date - The date to format.
+ * @returns {string} A human-readable timestamp string (e.g., "2d ago" for 2 days ago).
+ */
 function timeStamp(date) {
     const now = new Date();
     const providedDate = new Date(date);

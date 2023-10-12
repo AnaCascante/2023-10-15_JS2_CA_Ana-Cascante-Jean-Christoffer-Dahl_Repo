@@ -138,6 +138,7 @@ function showSnackbar() {
       snackbar.className = snackbar.className.replace("show", "");
   }, 3000); // This will hide the snackbar after 3 seconds
 }
+
 /**
  * Event listener for form submission when creating a post.
  *

@@ -1,3 +1,4 @@
+// Import statements for various utility functions
 import getProfile  from "../utils/getProfile.js"
 import postComment from "../utils/postComment.js";
 import updateMedia from "../utils/updateMedia.js";
@@ -8,7 +9,7 @@ import reactToPosts from "../utils/reactToPosts.js";
 import deletePost from "../utils/deletePost.js";
 import editPost from "../utils/editPost.js";
 import follow from "../utils/follow.js";
-// file is getting really big, lots of functions :P will do a propper cleanup later, but it works :P
+
 
 //stores html id's in a array to escape document.queryselector hell in vanilla js
 const selectors =
@@ -110,7 +111,10 @@ updateMediaForm.addEventListener("submit",async(e) =>{
 
 
 } )
-//generates html trying to the best of my ability to stick to functional programming method. 
+
+/**
+ * Generates HTML for the user profile page.
+ */
 async function generateHTML(){
   //your profile
     const data = await getProfile(baseURL,userName, options)
@@ -179,7 +183,15 @@ confirmEdit.addEventListener('click', async function(event) {
   
 
 });
-
+/**
+ * Handles the form submission for posting comments.
+ *
+ * @param {Event} e - The event object.
+ * @param {HTMLElement} element - The target element.
+ * @param {HTMLElement} spanComment - The comment count element.
+ * @param {HTMLElement} commentCountModal - The comment count in the modal.
+ * @param {HTMLElement} commentSectionModal - The comment section in the modal.
+ */
 async function handleFormSubmit(e, element, spanComment, commentCountModal, commentSectionModal) {
   e.preventDefault();
 
@@ -213,6 +225,11 @@ async function handleFormSubmit(e, element, spanComment, commentCountModal, comm
   }
 }
 // will be moved to utilsFolder
+/**
+ * Appends comments to the comment section of a modal.
+ * @param {Array} comments - The comments to be appended.
+ * @param {HTMLElement} commentSectionModal - The comment section in the modal.
+ */
 function appendCommentsToModal(comments, commentSectionModal) {
   comments.forEach(comment => {
       const [author, commentElem] = createCommentElement(comment);
@@ -220,6 +237,12 @@ function appendCommentsToModal(comments, commentSectionModal) {
   });
 }
 // will be moved to utilsFolder
+/**
+ * Creates an HTML element for a comment.
+ *
+ * @param {Object} comment - The comment data.
+ * @returns {Array} An array containing the author element and comment element.
+ */
 function createCommentElement(comment) {
   const commentElem = document.createElement("p");
   const authorElem = document.createElement("h6");
@@ -230,8 +253,18 @@ function createCommentElement(comment) {
   return [authorElem, commentElem];
 }
 
+
+// Call the function to generate the initial HTML
 generateHTML()
+
 // function from hell
+/**
+ * Generates profile cards for user posts and following users.
+ *
+ * @param {Array} data - The data for the profile cards.
+ * @param {HTMLElement} container - The container where the cards will be appended.
+ * @param {Object} userProfile - The user profile data.
+ */
 function generateProfileCards(data, container, userProfile) {
 
   if(userProfile.name === userName){

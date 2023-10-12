@@ -1,5 +1,8 @@
 
-
+/**
+ * An array of HTML element selectors.
+ * @type {string[]}
+ */
 const selectors =  [
     "#email",
     "#password",
@@ -10,9 +13,25 @@ const selectors =  [
     "#emailError"
 ]
 
+/**
+ * An array of DOM elements selected based on the selectors.
+ * @type {HTMLElement[]}
+ */
 const selected = selectors.map(value => document.querySelector(value));
+/**
+ * Regular expression for email validation.
+ * @type {RegExp}
+ */
 const mailRegex = /^[a-zA-Z0-9._%+-]+@(stud\.)?noroff\.no$/;
-const baseURL = "https://api.noroff.dev/api/v1"
+/**
+ * The base URL for API requests.
+ * @type {string}
+ */
+const baseURL = "https://api.noroff.dev/api/v1";
+/**
+ * An array of selected DOM elements, each representing an input field or error message.
+ * @type {HTMLElement[]}
+ */
 const [
     email,
     password,
@@ -22,7 +41,10 @@ const [
     passwordError,
     emailError
 ] = selected;
-
+/**
+ * Event listener for the registration form submission.
+ * @param {Event} e - The submit event.
+ */
 registerForm.addEventListener("submit", async(e) => {
     e.preventDefault();
     const emailValue = email.value.trim().toLowerCase();
@@ -67,7 +89,12 @@ registerForm.addEventListener("submit", async(e) => {
 })
 
 
-//createUser
+/**
+ * Function for creating a new user.
+ * @param {string} url - The URL for the API endpoint.
+ * @param {Object} data - The user data to be sent in the request body.
+ * @returns {Promise<Object>} A Promise that resolves with the user data.
+ */
 async function createUser(url ="", data={}){
     try{
         const response = await fetch(`${url}/social/auth/register`,{
@@ -90,7 +117,10 @@ async function createUser(url ="", data={}){
     }
 
 }
-
+/**
+ * Displays a snackbar with the specified message for a short duration.
+ * @param {string} message - The message to be displayed in the snackbar.
+ */
 function showSnackbar(message) {
     const snackbar = document.getElementById('snackbar');
     const snackbarMessage = document.getElementById('snackbarMessage');
