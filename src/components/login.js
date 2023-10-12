@@ -48,7 +48,7 @@ loginForm.addEventListener("submit", async(e) => {
     }
 
     if (!mailRegex.test(emailValue)) {
-        emailError.textContent = 'Invalid email format.';
+        emailError.textContent = 'Invalid email format. Must be a Noroff mail';
         isFormValid = false;
     }
 
