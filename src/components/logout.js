@@ -19,7 +19,7 @@ function logout(){
     /** 
     * Redirect the user to the login page (index.html).
     */
-    window.location.href = "../index.html";
+    window.location.href = "../src/index.html";
 
 }
 
