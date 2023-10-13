@@ -45,9 +45,13 @@ https://creator.nightcafe.studio/creation/D0OALsmIPxWEhgvUcMO3
 
 # Color palette used in the project 
 
-LightGrey Color: #5a566a  <svg width="100" height="50">
+Using bootstrap color black for the background of the pages. Using the color palette from the logo to apply some color to the page. Checked WCAG of the colors. 
+
+Button Color: #ffc107  <svg width="100" height="50">
   <rect width="50" height="50" rx="10" ry="10" style="fill: #5a566a;" />
 </svg>
+
+
 
 ## Color palette from the logo. 
 
