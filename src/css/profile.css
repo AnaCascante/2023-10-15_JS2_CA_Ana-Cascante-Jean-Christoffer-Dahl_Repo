@@ -143,8 +143,15 @@ button{
   cursor: pointer;
 }
 
-.bg-primary {
-  background-color: #cc5e3b;
+.btn.btn-primary {
+  background-color: #cc5e3b; 
+  color: white;
+  padding: auto;
+}
+
+.btn.btn-primary:hover {
+  background-color: #FFC107; 
+  color:white;
 }
 
 
