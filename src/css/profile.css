@@ -143,13 +143,14 @@ button{
   cursor: pointer;
 }
 
-.nav-item {
+
+.btn btn-primary {
   background-color: #cc5e3b; 
   color: white;
   padding: 20px;
 }
 
-.nav-item:hover {
+.btn btn-primary:hover {
   background-color: #5fd0ef; 
   color:black;
 }
