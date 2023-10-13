@@ -1,6 +1,6 @@
 # JS2-ca
 
-Project  of a social media platform. 
+Project  of a social media platform for Informatic geeks wanting to connect and share experiences and information. 
 
 
 # Technologies Used
@@ -25,7 +25,7 @@ npm start
 
 # Description of the project 
 
-
+The
 
 
 
@@ -57,5 +57,7 @@ Thank you to the teachers at Noroff and fellow students for their contributions 
 
 # Contact information 
 
-Jean Christoffer Dahl JeaDah78334@stud.noroff.no. 
-Ana Cascante 
+[Jean Christoffer Dahl](https://github.com/Jean-Christoffer){:target="_blank"}
+ JeaDah78334@stud.noroff.no
+[Ana Cascante](https://github.com/AnaCascante){:target="_blank"}
+ AnaCas71213@stud.noroff.no
