@@ -143,6 +143,10 @@ button{
   cursor: pointer;
 }
 
+.bg-primary {
+  background-color: #cc5e3b;
+}
+
 
 /*newCardsPosts*/
 .card{

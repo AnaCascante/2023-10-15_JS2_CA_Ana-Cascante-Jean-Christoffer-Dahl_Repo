@@ -8,6 +8,11 @@ button{
 }
 
 
+
+
+
+
+
 /*newCardsPosts*/
 .card{
   max-width: 600px;
@@ -163,4 +168,14 @@ button{
 #snackbar.show {
   visibility: visible;
   bottom: 50px;
+}
+
+.btn.btn-primary {
+  background-color: #cc5e3b; 
+  color: white;
+}
+
+.btn.btn-primary:hover {
+  background-color: #FFC107; 
+  color:white;
 }

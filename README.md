@@ -86,7 +86,9 @@ Thank you to the teachers at Noroff and fellow students for their contributions 
 # Contact information 
 
 <a href="https://github.com/Jean-Christoffer" target="_blank">Jean Christoffer Dahl</a>
+Email: 
 JeaDah78334@stud.noroff.no
 
 <a href="https://github.com/AnaCascante" target="_blank">Ana Cascante</a>
+Email: 
  AnaCas71213@stud.noroff.no
