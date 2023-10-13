@@ -144,13 +144,13 @@ button{
 }
 
 
-.btn btn-primary {
+.btn .btn-primary {
   background-color: #cc5e3b; 
   color: white;
   padding: 20px;
 }
 
-.btn btn-primary:hover {
+.btn .btn-primary:hover {
   background-color: #5fd0ef; 
   color:black;
 }
