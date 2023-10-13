@@ -170,13 +170,13 @@ button{
   bottom: 50px;
 }
 
-.btn.btn-primary {
+.nav-item {
   background-color: #cc5e3b; 
   color: white;
-  padding: auto;
+  padding: 20px;
 }
 
-.btn.btn-primary:hover {
+.nav-item:hover {
   background-color: #5fd0ef; 
   color:black;
 }
