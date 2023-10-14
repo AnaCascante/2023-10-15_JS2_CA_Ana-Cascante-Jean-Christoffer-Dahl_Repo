@@ -369,6 +369,7 @@ function generateProfileCards(data, container) {
     const cardProfileImage = document.createElement("img")
     cardProfileImage.className = "card-profile-img"
     cardProfileImage.src= element.author?.avatar ?? "./img/avatar.jpg";
+    cardProfileImage.setAttribute("aria-label", "Profile Image");
 
     //Author
     const cardName = document.createElement("p")
@@ -498,7 +499,8 @@ function submitHandler(e, element, spanComment, commentCountModal, commentSectio
     if (userName === element.author?.name) {
 
       const deleteBtn = document.createElement("button");
-      deleteBtn.className = "deletePostBtn"
+      deleteBtn.className = "deletePostBtn";
+      deleteBtn.setAttribute("aria-label", "Delete this post");
 
       const iTrash = document.createElement("i");
       iTrash.className = "fas fa-trash";
@@ -517,7 +519,8 @@ function submitHandler(e, element, spanComment, commentCountModal, commentSectio
     if (userName === element.author.name) {
       const btnEdit = document.createElement("button");
       btnEdit.className = "edit-post-btn";
-      btnEdit.textContent = "Edit"
+      btnEdit.textContent = "Edit";
+      btnEdit.setAttribute("aria-label", "Edit this post");
 
       btnEdit.setAttribute("data-post-id", element.id);
       confirmEdit.setAttribute("data-post-id", element.id);
