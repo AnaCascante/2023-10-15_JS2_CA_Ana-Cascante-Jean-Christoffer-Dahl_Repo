@@ -4,7 +4,7 @@
 
 # JS2-ca
 
-Creating a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>
+Creating a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>. On this project we have work in pairs, using github Projects. 
 
 
 # Technologies Used
@@ -39,6 +39,8 @@ Users can choose an avatar picture and a profile picture. After succesfully regi
 On the profile page you can see the posts created by you of the profile, you can also choose to see the posts from the other users that you are following, and you can see the profile of the people you follow.  
 
 On the feed page, you can see all the posts, and filter by dato or search a post. There is also the possibility to create posts, update posts, delete posts, like posts and comment on posts. 
+
+When working in a team is important to make a plan and share the work. At the beginning we wrote down the amount of work need to do to finish the project, making the task as specific as possible and making many small issues to work with. This makes it easier to start a issue and finish it fast and go the next issue. We also made a check list with all the steps needed to finish the project, the mark criteria that we need to have in the project and the reviews to make to the project at the end. 
 
 
 
