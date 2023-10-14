@@ -4,7 +4,7 @@
 
 # JS2-ca
 
-Project  of a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>
+Creating a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>
 
 
 # Technologies Used
@@ -19,6 +19,9 @@ Project  of a social media platform for Informatic geeks wanting to connect and 
 
 #  Project
 
+Access the deployed project on Netlify by this link: https://effortless-jalebi-e61abe.netlify.app/  
+  Create an account and enjoy the platform!
+
 git clone https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git
 
 Install depencencies: 
@@ -30,7 +33,12 @@ npm start
 
 # Description of the project 
 
-This project simulates a social media platform. The project has a log in, where users with mail adress from @noroff.no or @stud.noroff.no can register a profile. Users can choose an avatar picture and a profile picture. After succesfully registering a new user it is possible to navegate to profile and feed page. In the profile page you can see the posts created by the owner of the profile and you can also choose to see the posts from the other users that you are following. On the feed page, you can see all the posts, and filter by dato or search a post by author, title or content. There is also the possibility to create posts, update posts, delete posts, like posts and comment on posts. 
+This project simulates a social media platform. The project has a log in, where users with mail adress from @noroff.no or @stud.noroff.no can register a profile.
+Users can choose an avatar picture and a profile picture. After succesfully registering a new user it is possible to navegate to profile and feed page. 
+
+On the profile page you can see the posts created by you of the profile, you can also choose to see the posts from the other users that you are following, and you can see the profile of the people you follow.  
+
+On the feed page, you can see all the posts, and filter by dato or search a post. There is also the possibility to create posts, update posts, delete posts, like posts and comment on posts. 
 
 
 
