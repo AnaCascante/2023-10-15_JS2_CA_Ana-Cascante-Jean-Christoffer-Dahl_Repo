@@ -425,6 +425,7 @@ function generateProfileCards(data, container) {
     const likeBtn = document.createElement("button")
     const iLike = document.createElement("i")
     iLike.className = "fas fa-heart"
+    
 
     //likeCount
     const spanLike = document.createElement("span");
