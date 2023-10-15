@@ -4,7 +4,7 @@
 
 # JS2-ca
 
-Creating a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>. On this project we have work in pairs, using github Projects. 
+Creating a social media platform for Informatic geeks wanting to connect and share experiences and information. Implementing the REST API from <a href="https://docs.noroff.dev/">Noroff</a>. On this project we have work in pairs, using github Projects for project management.
 
 
 # Technologies Used
