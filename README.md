@@ -51,47 +51,7 @@ When working in a team is important to make a plan and share the work. At the be
 •	Image of the logo, created in nightcafe website. 
 https://creator.nightcafe.studio/creation/D0OALsmIPxWEhgvUcMO3
 
-
-
-# Color palette used in the project 
-
-Using bootstrap color black for the background of the pages. Using the color palette from the logo to apply some color to the page. Checked WCAG of the colors. 
-
-Button Color: #ffc107  <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #5a566a;" />
-</svg>
-
-
-
-## Color palette from the logo. 
-
-LightGrey Color: #5a566a  <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #5a566a;" />
-</svg>
-
-Orange Color: #cc5e3b  <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #cc5e3b;" />
-</svg>
-
-LightRosa Color: #c5c3df <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #c5c3df;" />
-</svg>
-
-LightBlue Color: #5fd0ef  <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #5fd0ef;" />
-</svg>
-
-Pink Color: #a67299  <svg width="100" height="50">
-  <rect width="50" height="50" rx="10" ry="10" style="fill: #a67299;" />
-</svg>
-
-
-
-
-Created with: https://brandfolder.com/workbench/color-palette 
-
-
-    
+ 
 
 # Acknowledgments 
 
