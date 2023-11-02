@@ -1,30 +1,31 @@
 {
-  "name": "css-frameworks-ca",
+  "name": "js2-ca",
   "version": "0.0.1",
-  "description": "A starting point for the CSS Frameworks CA project",
+  "description": "Building a Social media platform",
   "scripts": {
-    "test": "echo \"We will learn more about testing in the Workflow course\" && exit 1"
+    "docs": "jsdoc -c ./conf.json -r"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoroffFEU/css-frameworks-ca.git"
+    "url": "git+https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git"
   },
   "keywords": [
     "CSS",
     "CSS",
     "Frameworks",
-    "Bootstrap",
-    "SCSS",
-    "SASS"
+    "Bootstrap"
   ],
-  "author": "Oliver Dipple <oliver.dipple@noroff.no>",
+  "author": "Ana Cascante <anacas71213@stud.noroff.no> and Jean Christoffer Dahl <JeaDah78334@stud.noroff.no>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NoroffFEU/css-frameworks-ca/issues"
+    "url": "https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git/issues"
   },
-  "homepage": "https://github.com/NoroffFEU/css-frameworks-ca#readme",
+  "homepage": "https://github.com/AnaCascante/2023-10-15_JS2_CA_Ana-Cascante-Jean-Christoffer-Dahl_Repo.git#readme",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^5.2.0"
+    "bootstrap": "^5.3.1"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.2"
   }
 }
